@@ -1,7 +1,7 @@
 
 import { ApiResponse } from '../types';
 
-const API_BASE_URL = 'http://127.0.0.1:8000/api';
+const API_BASE_URL = 'https://cybernews-backend-7.onrender.com/api';
 
 // For initial data loading
 export const fetchNews = async (): Promise<ApiResponse> => {
