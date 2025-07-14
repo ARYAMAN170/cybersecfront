@@ -38,31 +38,33 @@ const Header: React.FC<HeaderProps> = ({
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 sm:h-14">
           {/* Left - Sidebar Toggle & Branding */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 md:space-x-4">
+            {/* Search button - visible only on mobile */}
             <motion.button
               onClick={onToggleSidebar}
-              className="lg:hidden p-2 rounded-full bg-white bg-opacity-30 text-gray-700 dark:text-white hover:bg-opacity-40 transition-all duration-300"
+              className="p-2 rounded-full bg-white bg-opacity-30 text-gray-700 dark:text-white hover:bg-opacity-40 transition-all duration-300 md:hidden"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
             >
               <Search className="h-5 w-5" />
             </motion.button>
 
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 md:space-x-3">
               <motion.div
-                className="w-10 h-10 bg-gradient-to-br from-yellow-300 to-orange-300 dark:from-yellow-600 dark:to-orange-600 rounded-xl flex items-center justify-center shadow-sm"
+                className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-yellow-300 to-orange-300 dark:from-yellow-600 dark:to-orange-600 rounded-xl flex items-center justify-center shadow-sm"
                 whileHover={{ scale: 1.1, rotate: 360 }}
                 transition={{ duration: 0.4 }}
               >
-                <span className="text-white font-extrabold text-base">CS</span>
+                <span className="text-white font-extrabold text-sm md:text-base">CS</span>
               </motion.div>
-              <div>
-                <h1 className="text-2xl font-extrabold text-gray-800 dark:text-white tracking-tight">
+              {/* Show heading text on tablets and up */}
+              <div className="hidden sm:block">
+                <h1 className="text-lg md:text-xl lg:text-2xl font-extrabold text-#0f0c10 dark:text-white tracking-tight">
                   CyberSec Dashboard
                 </h1>
-                <p className="text-sm text-gray-600 dark:text-gray-300 text-opacity-90 hidden sm:block font-medium">
+                <p className="text-xs md:text-sm text-[#1f0a26] dark:text-gray-300 text-opacity-90 font-medium">
                   Real-time cybersecurity intelligence
                 </p>
               </div>
@@ -70,17 +72,17 @@ const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Right - Controls */}
-          <div className="flex items-center space-x-4">
-            {/* Last Updated */}
-            <div className="hidden md:flex flex-col items-end text-sm text-gray-700 dark:text-gray-300 text-opacity-90">
+          <div className="flex items-center space-x-2 md:space-x-4">
+            {/* Last Updated - Hidden on mobile, shown on tablets and up */}
+            <div className="hidden sm:flex flex-col items-end text-xs md:text-sm text-gray-700 dark:text-gray-300 text-opacity-90">
               <span className="font-medium">Last updated</span>
               <span className="font-bold">{formatTime(lastUpdated)}</span>
             </div>
 
-            {/* Auto Refresh Toggle */}
+            {/* Auto Refresh Toggle - shows "Refresh" on mobile, "Auto Refresh" on tablets and up */}
             <motion.button
               onClick={() => setAutoRefresh(!autoRefresh)}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 shadow-md ${
+              className={`flex items-center space-x-1 md:space-x-2 px-2 py-1 md:px-3 md:py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 shadow-md ${
                 autoRefresh
                   ? 'bg-gradient-to-r from-green-300 to-teal-400 text-white'
                   : 'bg-white bg-opacity-30 text-gray-700 dark:text-white hover:bg-opacity-40'
@@ -88,21 +90,22 @@ const Header: React.FC<HeaderProps> = ({
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              {autoRefresh ? <ToggleRight className="h-5 w-5" /> : <ToggleLeft className="h-5 w-5" />}
+              {autoRefresh ? <ToggleRight className="h-4 w-4 md:h-5 md:w-5" /> : <ToggleLeft className="h-4 w-4 md:h-5 md:w-5" />}
               <span className="hidden sm:inline">Auto Refresh</span>
+              <span className="sm:hidden">Refresh</span>
             </motion.button>
 
             {/* Manual Refresh with Loader */}
             <motion.button
               onClick={onRefresh}
-              className="p-2 rounded-full bg-white bg-opacity-30 text-gray-700 dark:text-white hover:bg-opacity-40 transition-all duration-300"
+              className="p-2 md:p-2.5 rounded-full bg-white bg-opacity-30 text-gray-700 dark:text-white hover:bg-opacity-40 transition-all duration-300"
               whileHover={{ scale: 1.1, rotate: loading ? 0 : 360 }}
               whileTap={{ scale: 0.9 }}
               disabled={loading}
             >
               {loading ? (
                 <svg
-                  className="animate-spin h-5 w-5 text-gray-700 dark:text-white"
+                  className="animate-spin h-4 w-4 md:h-5 md:w-5 text-gray-700 dark:text-white"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -122,18 +125,18 @@ const Header: React.FC<HeaderProps> = ({
                   ></path>
                 </svg>
               ) : (
-                <RefreshCcw className="h-5 w-5" />
+                <RefreshCcw className="h-4 w-4 md:h-5 md:w-5" />
               )}
             </motion.button>
 
             {/* Bookmarks */}
             <motion.button
               onClick={onToggleBookmarks}
-              className="p-2 rounded-full bg-white bg-opacity-30 text-gray-700 dark:text-white hover:bg-opacity-40 transition-all duration-300"
+              className="p-2 md:p-2.5 rounded-full bg-white bg-opacity-30 text-gray-700 dark:text-white hover:bg-opacity-40 transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Bookmark className="h-5 w-5" />
+              <Bookmark className="h-4 w-4 md:h-5 md:w-5" />
             </motion.button>
 
             {/* Dark Mode */}
