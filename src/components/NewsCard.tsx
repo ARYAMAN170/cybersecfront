@@ -141,9 +141,9 @@ const NewsCard: React.FC<NewsCardProps> = ({ item, onBookmark, isBookmarked }) =
 
 function getSourceName(source?: string) {
   switch (source) {
-    case 'THN': return 'THN';
-    case 'BC': return 'BC';
-    case 'ZDI': return 'ZDI';
+    case 'THN': return 'The Hacker News';
+    case 'BC': return 'Bleeping Computer';
+    case 'ZDI': return 'Zero Day Initiative';
     default: return source || 'Security';
   }
 }
