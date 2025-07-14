@@ -36,19 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, filters, setFilters, onClose 
 
   const sidebarContent = (
     <div className="h-full flex flex-col">
-      {/* Header */}
-      {/* <div className="p-5 border-b border-gray-200 dark:border-gray-700 mt-16 flex items-center justify-between bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-700 dark:to-gray-800">
-        <h2 className="text-xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
-          <Newspaper className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-          <span>News Filters</span>
-        </h2>
-        <button
-          onClick={onClose}
-          className="p-2 rounded-lg bg-white dark:bg-gray-700 shadow-sm hover:shadow-md transition-shadow"
-        >
-          <X className="h-5 w-5 text-gray-600 dark:text-gray-300" />
-        </button>
-      </div> */}
+     
 
       {/* Scrollable content */}
       <div className="overflow-y-auto flex-1">
